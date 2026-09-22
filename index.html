@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4f46e5">
+
+  <link rel="manifest" href="manifest.json">
+
+  <title>Shorthand Dictation</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="app">
+
+    <header class="header">
+      <div class="logo">
+        SD
+      </div>
+
+      <div>
+        <h1>Shorthand Dictation</h1>
+        <p>Professional dictation practice</p>
+      </div>
+    </header>
+
+    <section class="panel">
+
+      <div class="section-title">
+
+        <div>
+          <h2>Practice Words</h2>
+          <p>
+            Enter one word per line or separate words with commas.
+          </p>
+        </div>
+
+        <span id="wordCount">
+          0 words
+        </span>
+
+      </div>
+
+      <textarea
+        id="words"
+        placeholder="Example:
+
+calm
+cam
+bait
+bet
+eel
+ill"
+      ></textarea>
+
+    </section>
+
+    <section class="panel">
+
+      <h2>Dictation Controls</h2>
+
+      <div class="control">
+
+        <div class="control-top">
+
+          <div>
+            <strong>Speaking Speed</strong>
+
+            <small>
+              Very slow → Very fast
+            </small>
+          </div>
+
+          <span id="speedValue">
+            1.00×
+          </span>
+
+        </div>
+
+        <div class="range-row">
+
+          <span>0.10×</span>
+
+          <input
+            type="range"
+            id="speed"
+            min="0.10"
+            max="4.00"
+            value="1.00"
+            step="0.05"
+          >
+
+          <span>4.00×</span>
+
+        </div>
+
+      </div>
+
+      <div class="control">
+
+        <div class="control-top">
+
+          <div>
+            <strong>Gap Between Words</strong>
+
+            <small>
+              Pause after each word
+            </small>
+          </div>
+
+          <span id="gapValue">
+            2.0 sec
+          </span>
+
+        </div>
+
+        <div class="range-row">
+
+          <span>0.2s</span>
+
+          <input
+            type="range"
+            id="gap"
+            min="0.2"
+            max="10"
+            value="2"
+            step="0.1"
+          >
+
+          <span>10s</span>
+
+        </div>
+
+      </div>
+
+      <div class="options">
+
+        <label class="toggle">
+
+          <input
+            type="checkbox"
+            id="repeat"
+          >
+
+          <span class="toggle-ui"></span>
+
+          <span>
+            <strong>Repeat</strong>
+            <small>
+              Repeat the list continuously
+            </small>
+          </span>
+
+        </label>
+
+        <label class="toggle">
+
+          <input
+            type="checkbox"
+            id="random"
+          >
+
+          <span class="toggle-ui"></span>
+
+          <span>
+            <strong>Random Order</strong>
+
+            <small>
+              Shuffle the words
+            </small>
+          </span>
+
+        </label>
+
+      </div>
+
+    </section>
+
+    <section class="panel">
+
+      <div class="section-title">
+
+        <div>
+          <h2>Voice</h2>
+
+          <p>
+            Indian English voice is selected automatically when available.
+          </p>
+        </div>
+
+      </div>
+
+      <select id="voice">
+
+        <option value="">
+          Loading voices...
+        </option>
+
+      </select>
+
+    </section>
+
+    <section class="practice-card">
+
+      <div class="status-label">
+        CURRENT WORD
+      </div>
+
+      <div id="currentWord">
+        Ready
+      </div>
+
+      <div id="progress">
+        0 / 0
+      </div>
+
+      <div
+        class="progress-bar"
+        id="progressBar"
+      >
+
+        <div id="progressFill"></div>
+
+      </div>
+
+      <div id="status">
+        Enter your words and press Start.
+      </div>
+
+    </section>
+
+    <section class="buttons">
+
+      <button
+        id="start"
+        class="btn start"
+      >
+        ▶ Start
+      </button>
+
+      <button
+        id="pause"
+        class="btn pause"
+      >
+        ⏸ Pause
+      </button>
+
+      <button
+        id="resume"
+        class="btn resume"
+      >
+        ▶ Resume
+      </button>
+
+      <button
+        id="stop"
+        class="btn stop"
+      >
+        ■ Stop
+      </button>
+
+    </section>
+
+    <footer>
+      Shorthand Dictation Practice
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener("load", () => {
+
+        navigator.serviceWorker.register("./service-worker.js");
+
+      });
+
+    }
+  </script>
+
+</body>
+</html>
